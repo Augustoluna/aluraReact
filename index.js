@@ -1,38 +1,16 @@
-class Cliente{
-    nome;
-    cpf;
-}
+import { Cliente } from "./Cliente.js";
+import { ContaCorrente } from "./ContaCorrente.js";
 
-class ContaCorrente{
-    agencia;
-    #saldo = 0; // o hashtag ( # ) nesse caso está setando a propriedade da classe como PRIVATE
+const cliente1 = new Cliente("Ricardo", 11122233309);
+const cliente2 = new Cliente("Alice", 88822233309);
 
-    sacar(valor){
-        if(this.#saldo >= valor){
-        this.#saldo -= valor;
-        return valor;
-        }
-    }
+const contaCorrenteRicardo = new ContaCorrente(1001, cliente1);
+contaCorrenteRicardo.depositar(500);
+contaCorrenteRicardo.sacar(100);
 
-    depositar(valor){
-        if(valor > 0){
-            this.#saldo += valor;
-        }
-    }
-}
+const conta2 = new ContaCorrente(102, cliente2);
 
-const cliente1 = new Cliente();
-cliente1.nome = "Ricardo";
-cliente1.cpf = 11122233309;
+let valor = 200;
+contaCorrenteRicardo.tranferir(valor, conta2);
 
-const cliente2 = new Cliente();
-cliente2.nome = "Alice";
-cliente2.cpf = 88822233309;
-
-const contaCorrenteRicardo = new ContaCorrente();
-contaCorrenteRicardo.#saldo = 0;
-contaCorrenteRicardo.agencia = 1001;
-
-contaCorrenteRicardo.depositar(3000);
-contaCorrenteRicardo.sacar(180)
-console.log(contaCorrenteRicardo)
+console.log(contaCorrenteRicardo);
